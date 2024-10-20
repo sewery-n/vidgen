@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIDEO GENERATOR FOR TIKTOK</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Upload Video & Choose Subreddit</h1>
+    <form id="uploadForm" enctype="multipart/form-data" method="POST" action="/upload">
+        <label for="subreddit">Subreddit:</label>
+        <input type="text" id="subreddit" name="subredditName" placeholder="dadjokes" required />
+        <br />
+        <label for="video">Choose video file:</label>
+        <input type="file" id="video" name="video" accept="video/*" required />
+        <br />
+        <button type="submit">Generate Video</button>
+    </form>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', async(event) => {
+            event.preventDefault();
+
+            const formData = new FormData();
+            formData.append('video', document.getElementById('video').files[0]);
+            formData.append('subreddit', document.getElementById('subreddit').value);
+
+            try {
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if(response.ok){
+                    const blob = await response.blob();
+                    const url = URL.createObjectURL(blob);
+                    window.location.href = url;
+                } else {
+                    alert('Error while generating video');
+                }
+            } catch (err){
+                console.error('Error: ', err);
+            }
+        });
+    </script>
+</body>
+</html>

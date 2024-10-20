@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: "Space Mono", monospace;
+}
+
+body {
+    background-color: #222930;
+    text-align: center;
+}
+
+form {
+    color : palegreen;
+}
+
+h1{
+    color: palegreen;
+    text-indent: 15px;
+    letter-spacing: 5px;
+}
+
+button {
+    border: 1px solid palegreen;
+    background-color: palegreen;
+    color: white;
+    width: 25%;
+    height: 5vh;
+    margin-top: 35px;
+}
